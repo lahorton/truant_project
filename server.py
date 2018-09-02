@@ -3,7 +3,7 @@ from jinja2 import StrictUndefined
 from flask import Flask
 from flask_debugtoolbar import DebugToolbarExtension
 import os
-from model import connect_to_db, db
+# from model import connect_to_db, db
 
 app = Flask(__name__)
 
@@ -19,19 +19,21 @@ app.jinja_env.undefined = StrictUndefined
 def index():
     """Homepage."""
 
-    return "<html><body>HOMEPAGE!</body></html>"
+    return render_template("homepage.html")
+
 
 @app.route('/about')
 def tells_about():
     """all about J"""
 
-    return "<html><body>ABOUT!</body></html>"
+    return render_template("about.html")
+
 
 @app.route('/pricing')
 def gives_pricing():
     """provides overview of ordering and pricing"""
 
-    return "<html><body>Pricing!</body></html>"
+    return render_template("pricing.html")
 
 
 if __name__ == "__main__":
@@ -39,7 +41,7 @@ if __name__ == "__main__":
     # that we invoke the DebugToolbarExtension
     app.debug = True
 
-    connect_to_db(app)
+    # connect_to_db(app)
 
     # Use the DebugToolbar
     DebugToolbarExtension(app)
